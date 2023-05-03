@@ -148,6 +148,18 @@ class CalendarWeek extends StatefulWidget {
   /// Background color of calendar
   final Color backgroundColor;
 
+  ///Gradient background of calendar
+  final List<Color> gradientColor;
+
+  ///Condition background gradient
+  final bool isGradient;
+
+  ///Start of gradient color
+  final Alignment beginGradient;
+
+  ///end of gradient color
+  final Alignment endGradient;
+
   /// List contain titles day of week
   final List<String> daysOfWeek;
 
@@ -200,6 +212,10 @@ class CalendarWeek extends StatefulWidget {
       this.onDatePressed,
       this.onDateLongPressed,
       this.backgroundColor,
+      this.isGradient,
+      this.gradientColor,
+      this.beginGradient,
+      this.endGradient,
       this.daysOfWeek,
       this.months,
       this.monthDisplay,
@@ -238,6 +254,10 @@ class CalendarWeek extends StatefulWidget {
           Function(DateTime)? onDatePressed,
           Function(DateTime)? onDateLongPressed,
           Color backgroundColor = Colors.white,
+          bool isGradient = false,
+          List<Color> gradientColor = const [],
+          Alignment beginGradient = Alignment.centerLeft,
+          Alignment endGradient = Alignment.centerRight,
           List<String> dayOfWeek = dayOfWeekDefault,
           List<String> month = monthDefaults,
           bool showMonth = true,
@@ -268,6 +288,10 @@ class CalendarWeek extends StatefulWidget {
         onDatePressed ?? (DateTime date) {},
         onDateLongPressed ?? (DateTime date) {},
         backgroundColor,
+        isGradient,
+        gradientColor,
+        beginGradient,
+        endGradient,
         dayOfWeek,
         month,
         showMonth,
@@ -342,7 +366,16 @@ class _CalendarWeekState extends State<CalendarWeek> {
 
   /// Body layout
   Widget _body() => Container(
-      color: widget.backgroundColor,
+      decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        gradient: widget.isGradient
+            ? LinearGradient(
+                begin: widget.beginGradient,
+                end: widget.endGradient,
+                colors: widget.gradientColor,
+              )
+            : null,
+      ),
       width: double.infinity,
       height: widget.height,
       child: ScrollConfiguration(
