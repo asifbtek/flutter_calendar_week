@@ -48,6 +48,8 @@ class _HomePageState extends State<HomePage> {
             ),
             child: CalendarWeek(
               isGradient: false,
+              dateItemHeight: 30,
+              dateItemWidth: 30,
               controller: _controller,
               height: 100,
               monthDisplay: false,
@@ -57,6 +59,7 @@ class _HomePageState extends State<HomePage> {
                 Colors.cyan,
                 Colors.amber,
               ],
+              dayShapeBorder: BoxShape.circle,
               minDate: DateTime.now().add(
                 Duration(days: -365),
               ),

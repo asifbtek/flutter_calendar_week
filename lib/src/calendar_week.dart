@@ -190,6 +190,12 @@ class CalendarWeek extends StatefulWidget {
   /// Height of calendar
   final double height;
 
+  /// Width of DateItem
+  final double dateItemWidth;
+
+  /// Height of DateItem
+  final double dateItemHeight;
+
   /// Page controller
   final CalendarWeekController? controller;
 
@@ -201,6 +207,8 @@ class CalendarWeek extends StatefulWidget {
       this.maxDate,
       this.minDate,
       this.height,
+      this.dateItemWidth,
+      this.dateItemHeight,
       this.monthViewBuilder,
       this.dayOfWeekStyle,
       this.monthAlignment,
@@ -239,6 +247,8 @@ class CalendarWeek extends StatefulWidget {
           DateTime? maxDate,
           DateTime? minDate,
           double height = 100,
+          double dateItemWidth = 50,
+          double dateItemHeight = 50,
           Widget Function(DateTime)? monthViewBuilder,
           TextStyle dayOfWeekStyle =
               const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
@@ -277,6 +287,8 @@ class CalendarWeek extends StatefulWidget {
         maxDate ?? DateTime.now().add(Duration(days: 180)),
         minDate ?? DateTime.now().add(Duration(days: -180)),
         height,
+        dateItemWidth,
+        dateItemHeight,
         monthViewBuilder,
         dayOfWeekStyle,
         monthAlignment,
@@ -465,6 +477,8 @@ class _CalendarWeekState extends State<CalendarWeek> {
 
   /// Date item layout
   Widget _dateItem(DateTime? date) => DateItem(
+      width: widget.dateItemWidth,
+      height: widget.dateItemHeight,
       today: controller._today,
       date: date,
       dateStyle: compareDate(date, controller._today)
