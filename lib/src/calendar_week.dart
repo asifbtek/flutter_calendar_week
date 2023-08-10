@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_week/src/custom_scroll_behaiver.dart';
 import 'package:flutter_calendar_week/src/date_item.dart';
@@ -260,7 +261,7 @@ class CalendarWeek extends StatefulWidget {
           Alignment endGradient = Alignment.centerRight,
           List<String> dayOfWeek = dayOfWeekDefault,
           List<String> month = monthDefaults,
-          bool showMonth = true,
+          bool monthDisplay = true,
           bool isTablet = false,
           List<int> weekendsIndexes = weekendsIndexesDefault,
           TextStyle weekendsStyle =
@@ -294,7 +295,7 @@ class CalendarWeek extends StatefulWidget {
         endGradient,
         dayOfWeek,
         month,
-        showMonth,
+        monthDisplay,
         isTablet,
         weekendsIndexes,
         weekendsStyle,
@@ -412,17 +413,20 @@ class _CalendarWeekState extends State<CalendarWeek> {
       );
 
   /// Day of week item layout
-  Widget _monthItem(String title) => Align(
-        alignment: widget.monthAlignment,
-        child: Container(
-            margin: widget.marginMonth,
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-            )),
-      );
+  Widget _monthItem(String title) => widget.monthDisplay
+      ? Align(
+          alignment: widget.monthAlignment,
+          child: Container(
+              margin: widget.marginMonth,
+              child: Text(
+                title,
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              )),
+        )
+      : const SizedBox();
 
   /// Day of week layout
   Widget _dayOfWeek(List<String> dayOfWeek) => Container(

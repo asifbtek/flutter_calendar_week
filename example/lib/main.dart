@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               isGradient: false,
               controller: _controller,
               height: 100,
-              showMonth: true,
+              monthDisplay: false,
               backgroundColor: Colors.blueGrey,
               gradientColor: [
                 Colors.green,
